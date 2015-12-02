@@ -97,6 +97,7 @@ program
   .option('--trace-deprecation', 'show stack traces on deprecations')
   .option('--watch-extensions <ext>,...', 'additional extensions to monitor with --watch', list, [])
   .option('--delay', 'wait for async suite definition')
+  .option('--max-test-fails', 'set maximum test failures before recognizing a failure')
 
 program.name = 'mocha';
 
@@ -243,6 +244,10 @@ if (!program.timeouts) mocha.enableTimeouts(false);
 // --timeout
 
 if (program.timeout) mocha.suite.timeout(program.timeout);
+
+// --max-test-fails
+
+if (program.maxTestFails) mocha.suite.maxTestFails(program.maxTestFails);
 
 // --bail
 

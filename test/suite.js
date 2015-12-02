@@ -393,4 +393,56 @@ describe('Suite', function(){
     });
 
   });
+  
+  describe('.maxTestFails()', function() {
+    describe('when a test fails', function() {
+      this.maxTestFails(3);
+      var beforeEachCalls = 0;
+      beforeEach(function() {
+        beforeEachCalls++;
+      });
+
+      var test1Fails = 0;
+      it('should rerun', function() {
+        if (test1Fails < 1) {
+          test1Fails++;
+          throw new Error();
+        }
+        test1Fails.should.equal(1);
+        beforeEachCalls = 0;
+      });
+
+      var test2Fails = 0;
+      it('should rerun to maximum test fails', function() {
+        if (test2Fails < 3) {
+          test2Fails++;
+          throw new Error();
+        }
+        test2Fails.should.equal(3);
+        beforeEachCalls = 0;
+      });
+      
+      var test3Fails = 0;
+      it('should rerun "beforeEach" calls', function() {
+        if (test3Fails < 3) {
+          test3Fails++;
+          throw new Error();
+        }
+        beforeEachCalls.should.equal(4);
+        beforeEachCalls = 0;
+      });
+      
+      describe('in a sub suite', function() {
+        var test4Fails = 0;
+        it('should rerun', function() {
+          if (test4Fails < 1) {
+            test4Fails++;
+            throw new Error();
+          }
+          test4Fails.should.equal(1);
+          beforeEachCalls = 0;
+        });
+      });
+    });
+  });
 });

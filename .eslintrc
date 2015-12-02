@@ -54,7 +54,6 @@ rules:
   no-floating-decimal: 0
   no-func-assign: 2
   no-implied-eval: 2
-  no-inner-declarations: [2, functions]
   no-invalid-regexp: 2
   no-irregular-whitespace: 2
   no-iterator: 2
@@ -125,6 +124,5 @@ rules:
   valid-jsdoc: [0, { requireReturn: false }]                               # TODO: Change to warning
   valid-typeof: 2
   vars-on-top: 0
-  wrap-iife: 2
   wrap-regex: 2
   yoda: [2, never]
